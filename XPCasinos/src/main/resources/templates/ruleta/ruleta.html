@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XP Casinos</title>
+    <script th:src="@{/jquery-3.3.1.min.js}"></script>
+    <link rel="stylesheet" href="ruleta.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
+</head>
+
+<body>
+
+    <div id="PartDer">
+
+        <div id="Horario">
+
+            <table class="Thora">
+                <tbody>
+                    <tr>
+                        <td>
+                            <p id="fotoreloj"></p>
+                        </td>
+                        <td>
+                            <p id="HoraAct" style="font-family: sans-serif;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: normal;"></p>
+                        </td>
+                        <td>
+                            <i class="ri-user-fill separada"></i>
+                        </td>
+                        <td>
+                            <span th:text="${usuario.idUsuario}" id="identificador"></span>
+                        </td>
+                        <td>
+                            <button class="IngSaldo separada" id="btnAbrirModalPrin"></button>
+                        </td>
+
+                        <!--modales para ingresar-->
+                        <div id="myModalPrin" class="modal">
+                            <div class="modal-content">
+                                <span id="close1">&times;</span>
+                                <p style="font-family: 'Kanit'; color: #ffffff; line-height: 1.6;">Indica
+                                    que desea hacer:</p>
+                                <button class="ingresar" id="MIng">INGRESAR</button>
+                                <button class="retirar" id="MRet">RETIRAR</button>
+                            </div>
+                        </div>
+
+                        <div id="myModalIng" class="modal">
+                            <div class="modal-content">
+                                <span id="close2">&times;</span>
+                                <p style="font-family: 'Kanit'; color: #ffffff; line-height: 1.6;">Saldo
+                                    que desea ingresar: </p>
+                                <input type="text" id="ingresarCantidad">
+                                <button id="btnaceptarIngresar">Aceptar</button>
+                            </div>
+                        </div>
+
+                        <div id="myModalRet" class="modal">
+                            <div class="modal-content">
+                                <span id="close3">&times;</span>
+                                <p style="font-family: 'Kanit'; color: #ffffff; line-height: 1.6;">Saldo
+                                    que desea retirar: </p>
+                                <input type="text" id="retirarCantidad">
+                                <button id="btnaceptarRetirar">Aceptar</button>
+                            </div>
+                        </div>
+                        <!---->
+                        <td>
+                            <button class="NumerosCali separada" id="btn_Calientes"></button>
+                        </td>
+                        <div id="myModalCal" class="modal">
+                            <div class="modal-content">
+                                <span id="close4">&times;</span>
+
+                                <label class="TableNumC">
+                                    <label>
+                                        <label id="container-Cal">
+                                            <div id="calIzq">
+                                                <label class="TitCal">Calientes</label>
+                                                <label class="NumC" id="1Cal">0</label>
+                                                <label class="NumC" id="2Cal">0</label>
+                                                <label class="NumC" id="3Cal">0</label>
+                                                <label class="NumC" id="4Cal">0</label>
+                                                <label class="NumC" id="5Cal">0</label>
+                                            </div>
+                                            <div id="calDer">
+                                                <label class="TitCFrio">Frios</label>
+                                                <label class="NumF" id="1Fri">0</label>
+                                                <label class="NumF" id="2Fri">0</label>
+                                                <label class="NumF" id="3Fri">0</label>
+                                                <label class="NumF" id="4Fri">0</label>
+                                                <label class="NumF" id="5Fri">0</label>
+                                            </div>
+                                        </label>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                        <td>
+                            <button class="Result separada" id="btn_resultadosnav"></button>
+                        </td>
+
+                        <div id="myModalRes" class="modal">
+                            <div class="modal-content">
+                                <span id="close5">&times;</span>
+                                <div class="table-container-Res" id="tablaRes">
+                                    <div class="table-row-Res">
+                                        <label class="tablaRes" id="n1">0</label>
+                                        <label class="tablaRes" id="n2">0</label>
+                                        <label class="tablaRes" id="n3">0</label>
+                                        <label class="tablaRes" id="n4">0</label>
+                                        <label class="tablaRes" id="n5">0</label>
+                                        <label class="tablaRes" id="n6">0</label>
+                                        <label class="tablaRes" id="n7">0</label>
+                                        <label class="tablaRes" id="n8">0</label>
+                                        <label class="tablaRes" id="n9">0</label>
+                                        <label class="tablaRes" id="n10">0</label>
+                                    </div>
+                                    <div class="table-row">
+                                        <label class="tablaRes" id="n11">0</label>
+                                        <label class="tablaRes" id="n12">0</label>
+                                        <label class="tablaRes" id="n13">0</label>
+                                        <label class="tablaRes" id="n14">0</label>
+                                        <label class="tablaRes" id="n15">0</label>
+                                        <label class="tablaRes" id="n16">0</label>
+                                        <label class="tablaRes" id="n17">0</label>
+                                        <label class="tablaRes" id="n18">0</label>
+                                        <label class="tablaRes" id="n19">0</label>
+                                        <label class="tablaRes" id="n20">0</label>
+                                    </div>
+                                    <div class="table-row">
+                                        <label class="tablaRes" id="n21">0</label>
+                                        <label class="tablaRes" id="n22">0</label>
+                                        <label class="tablaRes" id="n23">0</label>
+                                        <label class="tablaRes" id="n24">0</label>
+                                        <label class="tablaRes" id="n25">0</label>
+                                        <label class="tablaRes" id="n26">0</label>
+                                        <label class="tablaRes" id="n27">0</label>
+                                        <label class="tablaRes" id="n28">0</label>
+                                        <label class="tablaRes" id="n29">0</label>
+                                        <label class="tablaRes" id="n30">0</label>
+                                    </div>
+                                    <div class="table-row">
+                                        <label class="tablaRes" id="n31">0</label>
+                                        <label class="tablaRes" id="n32">0</label>
+                                        <label class="tablaRes" id="n33">0</label>
+                                        <label class="tablaRes" id="n34">0</label>
+                                        <label class="tablaRes" id="n35">0</label>
+                                        <label class="tablaRes" id="n36">0</label>
+                                        <label class="tablaRes" id="n37">0</label>
+                                        <label class="tablaRes" id="n38">0</label>
+                                        <label class="tablaRes" id="n39">0</label>
+                                        <label class="tablaRes" id="n40">0</label>
+                                    </div>
+                                    <div class="table-row">
+                                        <label class="tablaRes" id="n41">0</label>
+                                        <label class="tablaRes" id="n42">0</label>
+                                        <label class="tablaRes" id="n43">0</label>
+                                        <label class="tablaRes" id="n44">0</label>
+                                        <label class="tablaRes" id="n45">0</label>
+                                        <label class="tablaRes" id="n46">0</label>
+                                        <label class="tablaRes" id="n47">0</label>
+                                        <label class="tablaRes" id="n48">0</label>
+                                        <label class="tablaRes" id="n49">0</label>
+                                        <label class="tablaRes" id="n50">0</label>
+                                    </div>
+                                    <div class="table-row">
+                                        <label class="tablaRes" id="n51">0</label>
+                                        <label class="tablaRes" id="n52">0</label>
+                                        <label class="tablaRes" id="n53">0</label>
+                                        <label class="tablaRes" id="n54">0</label>
+                                        <label class="tablaRes" id="n55">0</label>
+                                        <label class="tablaRes" id="n56">0</label>
+                                        <label class="tablaRes" id="n57">0</label>
+                                        <label class="tablaRes" id="n58">0</label>
+                                        <label class="tablaRes" id="n59">0</label>
+                                        <label class="tablaRes" id="n60">0</label>
+                                    </div>
+                                    <div class="table-row">
+                                        <label class="tablaRes" id="n61">0</label>
+                                        <label class="tablaRes" id="n62">0</label>
+                                        <label class="tablaRes" id="n63">0</label>
+                                        <label class="tablaRes" id="n64">0</label>
+                                        <label class="tablaRes" id="n65">0</label>
+                                        <label class="tablaRes" id="n66">0</label>
+                                        <label class="tablaRes" id="n67">0</label>
+                                        <label class="tablaRes" id="n68">0</label>
+                                        <label class="tablaRes" id="n69">0</label>
+                                        <label class="tablaRes" id="n70">0</label>
+                                    </div>
+                                    <div class="table-row">
+                                        <label class="tablaRes" id="n71">0</label>
+                                        <label class="tablaRes" id="n72">0</label>
+                                        <label class="tablaRes" id="n73">0</label>
+                                        <label class="tablaRes" id="n74">0</label>
+                                        <label class="tablaRes" id="n75">0</label>
+                                        <label class="tablaRes" id="n76">0</label>
+                                        <label class="tablaRes" id="n77">0</label>
+                                        <label class="tablaRes" id="n78">0</label>
+                                        <label class="tablaRes" id="n79">0</label>
+                                        <label class="tablaRes" id="n80">0</label>
+                                    </div>
+                                    <div class="table-row">
+                                        <label class="tablaRes" id="n81">0</label>
+                                        <label class="tablaRes" id="n82">0</label>
+                                        <label class="tablaRes" id="n83">0</label>
+                                        <label class="tablaRes" id="n84">0</label>
+                                        <label class="tablaRes" id="n85">0</label>
+                                        <label class="tablaRes" id="n86">0</label>
+                                        <label class="tablaRes" id="n87">0</label>
+                                        <label class="tablaRes" id="n88">0</label>
+                                        <label class="tablaRes" id="n89">0</label>
+                                        <label class="tablaRes" id="n90">0</label>
+                                    </div>
+                                    <div class="table-row">
+                                        <label class="tablaRes" id="n91">0</label>
+                                        <label class="tablaRes" id="n92">0</label>
+                                        <label class="tablaRes" id="n93">0</label>
+                                        <label class="tablaRes" id="n94">0</label>
+                                        <label class="tablaRes" id="n95">0</label>
+                                        <label class="tablaRes" id="n96">0</label>
+                                        <label class="tablaRes" id="n97">0</label>
+                                        <label class="tablaRes" id="n98">0</label>
+                                        <label class="tablaRes" id="n99">0</label>
+                                        <label class="tablaRes" id="n100">0</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <td>
+                            <a th:href="@{/inicio(idUsuario=${usuario.idUsuario})}">
+                                <button class="Inicio separada"></button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="apartadoTabla">
+            <div id="tablaNumeros">
+                <table class="tapete-casino">
+                    <tbody>
+                        <tr>
+                            <td rowspan="3" class="green cero num-cell">
+                                <button id="numR0">0</button>
+                                <div class="figura" id="0"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR3">3</button>
+                                <div class="figura" id="3"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR6">6</button>
+                                <div class="figura" id="6"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR9">9</button>
+                                <div class="figura" id="9"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR12">12</button>
+                                <div class="figura" id="12"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR15">15</button>
+                                <div class="figura" id="15"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR18">18</button>
+                                <div class="figura" id="18"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR21">21</button>
+                                <div class="figura" id="21"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR24">24</button>
+                                <div class="figura" id="24"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR27">27</button>
+                                <div class="figura" id="27"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR30">30</button>
+                                <div class="figura" id="30"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR33">33</button>
+                                <div class="figura" id="33"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR36">36</button>
+                                <div class="figura" id="36"></div>
+                            </td>
+                            <td class="columnas to2" style="border-top-right-radius: 30px;">
+                                <button id="2to1">2 to 1</button>
+                                <div class="figuraEspC" id="claseEsp_1"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="black num-cell">
+                                <button id="numR2">2</button>
+                                <div class="figura" id="2"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR5">5</button>
+                                <div class="figura" id="5"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR8">8</button>
+                                <div class="figura" id="8"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR11">11</button>
+                                <div class="figura" id="11"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR14">14</button>
+                                <div class="figura" id="14"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR17">17</button>
+                                <div class="figura" id="17"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR20">20</button>
+                                <div class="figura" id="20"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR23">23</button>
+                                <div class="figura" id="23"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR26">26</button>
+                                <div class="figura" id="26"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR29">29</button>
+                                <div class="figura" id="29"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR32">32</button>
+                                <div class="figura" id="32"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR35">35</button>
+                                <div class="figura" id="35"></div>
+                            </td>
+                            <td class="columnas to2">
+                                <button id="2to2">2 to 1</button>
+                                <div class="figuraEspC" id="claseEsp_2"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="red num-cell">
+                                <button id="numR1">1</button>
+                                <div class="figura" id="1"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR4">4</button>
+                                <div class="figura" id="4"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR7">7</button>
+                                <div class="figura" id="7"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR10">10</button>
+                                <div class="figura" id="10"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR13">13</button>
+                                <div class="figura" id="13"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR16">16</button>
+                                <div class="figura" id="16"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR19">19</button>
+                                <div class="figura" id="19"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR22">22</button>
+                                <div class="figura" id="22"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR25">25</button>
+                                <div class="figura" id="25"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR28">28</button>
+                                <div class="figura" id="28"></div>
+                            </td>
+                            <td class="black num-cell">
+                                <button id="numR31">31</button>
+                                <div class="figura" id="31"></div>
+                            </td>
+                            <td class="red num-cell">
+                                <button id="numR34">34</button>
+                                <div class="figura" id="34"></div>
+                            </td>
+                            <td class="columnas to2" style="border-bottom-right-radius: 30px;">
+                                <button id="2to3">2 to 1</button>
+                                <div class="figuraEspC" id="claseEsp_3"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="oculto"></td>
+                            <td colspan="4" class="varias">
+                                <button id="1Doc">1 Docena</button>
+                                <div class="figuraEsp4" id="claseEsp_4"></div>
+                            </td>
+                            <td colspan="4" class="varias">
+                                <button id="2Doc">2 Docena</button>
+                                <div class="figuraEsp4" id="claseEsp_5"></div>
+                            </td>
+                            <td colspan="4" class="varias">
+                                <button id="3Doc">3 Docena</button>
+                                <div class="figuraEsp4" id="claseEsp_6"></div>
+                            </td>
+                            <td rowspan="2" class="oculto"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="BtnAba varias">
+                                <button id="1to18">1 to 18</button>
+                                <div class="figuraEsp" id="claseEsp_7"></div>
+                            </td>
+                            <td colspan="2" class="BtnAba varias">
+                                <button id="EVEN">EVEN</button>
+                                <div class="figuraEsp" id="claseEsp_8"></div>
+                            </td>
+                            <td colspan="2" class="BtnAba varias">
+                                <button id="ColorR"></button>
+                                <div class="figuraEsp" id="claseEsp_9"></div>
+                            </td>
+                            <td colspan="2" class="BtnAba varias">
+                                <button id="ColorN"></button>
+                                <div class="figuraEsp" id="claseEsp_10"></div>
+                            </td>
+                            <td colspan="2" class="BtnAba varias">
+                                <button id="ODD">ODD</button>
+                                <div class="figuraEsp" id="claseEsp_11"></div>
+                            </td>
+                            <td colspan="2" class="BtnAba varias">
+                                <button id="19to36">19 to 36</button>
+                                <div class="figuraEsp" id="claseEsp_12"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="avisoEmergente" class="aviso">No va mas</div>
+
+        <div id="BotonFunc">
+            <input class="boton-casino borrar" type="button" id="btn_borrar" value="Borrar apuesta">
+            <div class="BotonesFunc" id="fichas">
+                <div>
+                    <button class="botonFicha-redondo ficha" id="Ficha10" style="background-color: #0000FF">10</button>
+                    <button class="botonFicha-redondo ficha" id="Ficha20" style="background-color: #c81e1e">20</button>
+                    <button class="botonFicha-redondo ficha" id="Ficha50" style="background-color: #FFA500">50</button>
+                    <button class="botonFicha-redondo ficha" id="Ficha100"
+                        style="background-color: #00FF00">100</button>
+                    <button class="botonFicha-redondo ficha" id="Ficha200"
+                        style="background-color: #800080">200</button>
+                </div>
+            </div>
+            <input class="boton-casino acep" type="button" id="Btn_aceptarApu" value="Aceptar Apuesta">
+        </div>
+        <hr>
+        <div id="progressBar-container">
+            <table id="barraProgr">
+                <tr>
+                    <td id="barraP">
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div id="PartIzq">
+
+        <div id="EncabezadoIzq">
+            <a th:href="@{/inicio(idUsuario=${usuario.idUsuario})}">
+                <div id="logoCas">
+
+                </div>
+                <div>
+                    <h2 class="tit1">XP Casino</h2>
+                </div>
+            </a>
+        </div>
+
+        <div class="Rule"></div>
+
+        <div id="RuleGif"></div>
+
+        <div id="bolitaNumero"></div>
+
+        <div id="info_user">
+            <div class="info-item" style="display: none;">
+                <h4 class="tit_info">Saldo:</h4>
+                <p class="resInf" id="saldo_info">0</p>
+            </div>
+            <div class="info-item">
+                <h4 class="tit_info">Saldo:</h4>
+                <p class="resInf" th:text="${usuario.saldo + '€'}" id="fichas_info"></p>
+            </div>
+            <div class="info-item">
+                <h4 class="tit_info">Apuesta Total:</h4>
+                <p class="resInf" id="cant_apuesta_info">0€</p>
+            </div>
+            <div class="info-item">
+                <h4 class="tit_info">Ganancias:</h4>
+                <p class="resInf" id="ganancias_info">0€</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="ruleta.js"></script>
+
+</body>
+
+</html>

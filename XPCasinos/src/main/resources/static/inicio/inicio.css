@@ -1,0 +1,91 @@
+.navbar {
+    width: 100%;
+    min-height: 70px; /* Ajusta la altura en píxeles según tus necesidades */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.635); /* Agrega una sombra al navbar */
+    font-family: 'Kanit';
+}
+
+#fotoExit {
+    width: 20px; /* Ajusta el ancho de la imagen según tus preferencias */
+    margin-left: 12px; /* Añade margen izquierdo para separar la imagen del texto */
+}
+
+#iconoSaldo {
+    width: 20px; /* Ajusta el ancho de la imagen según tus preferencias */
+    margin-left: 10px; /* Añade margen izquierdo para separar la imagen del texto */
+}
+
+#clock {
+    padding-top: 10%;
+    color: white;
+    font-family: sans-serif;
+}
+
+.navbar-nav .nav-item {
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.navbar-nav .nav-item a {
+  position: relative;
+  padding-bottom: 0.75rem;
+  color: var(--white);
+  font-size: 17px;
+  margin-right: 50px;
+}
+
+.navbar-nav .nav-item a::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 0;
+  left: 0;
+  bottom: 0;
+  background-color:#80ff00;
+  transition: 0.3s;
+}
+
+.navbar-nav .nav-item a:hover::after {
+  width: 46%;
+}
+
+#inputModal {
+    border-color: #003cff;
+    border-radius: 20%;
+}
+
+.estilo{
+    font-family: 'Kanit';
+}
+
+
+#bienvenida{
+	margin-left: -5%;
+	color: white;
+	margin-top: -1%;
+	margin-bottom: 1.5%;
+	font-family: 'Kanit';
+}
+
+
+#carouselExampleControls {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2%;
+  }
+
+.carousel-item img {
+    max-height: 70vh;
+    width: auto;
+    margin: 0 auto;
+    border-radius: 1%;
+  }
+  
+ .carousel-control-prev{
+	 margin-left: -10%;
+ }
+ 
+.carousel-control-next{
+	margin-right: -10%;
+}
